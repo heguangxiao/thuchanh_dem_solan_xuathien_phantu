@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<input type="button" id="inputNum" value="Input Number" onclick="binSearch();"/><br/>
+<div id="showMessage"></div>
+<br/>
+
+<script>
+    let showDiv = document.getElementById('showMessage');
+    let str ='';
+    var nums = [];
+    for(let i=1; i<=100; ++i){
+        nums[i-1] = Math.floor(Math.random() * 100);
+        if(nums[i-1] < 10){
+            str += '0' + nums[i-1] + '   ';
+        } else {
+            str += nums[i-1] + '   ';
+        }
+
+        if (i % 10 == 0){
+            str += '<br/>';
+        }
+    }
+    showDiv.innerHTML = str;
+
+    function seqSearch(arr, data) {
+        for (var i = 0; i < arr.length; ++i) {
+            if (arr[i] == data) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    function count(arr, data) {
+        let count = 0;
+        for (i = 0; i < arr.length; i++) {
+            if (arr[i] == data){
+                count++;
+            }
+        }
+        return count;
+    }
+
+    function binSearch() {
+        let num = prompt('Input Number',0);
+        if(seqSearch(nums,num)){
+            str += '<br/>' + num + ' xuat hien '+count(nums,num)+' lan ';
+        }
+
+        str += '<br/>'+sapxep(nums).join('-');
+        showDiv.innerHTML = str;
+    }
+
+    function sapxep(arr) {
+        arr.sort(function (a,b) {
+            return a-b;
+        })
+
+        return arr;
+    }
+</script>
+
+</body>
+</html>
